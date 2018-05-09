@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <label>width:</label>
+    <input name="width" type="range" value="0" max="300" min="0" data-sizing="px">
+    <label>background-color:</label>
+    <input name="bolorColor" type="color">
+</div>
+
+<div class="box"></div>
+
+<a href="http://www.ruanyifeng.com/blog/2017/05/css-variables.html">CSS 变量教程</a>
+
+<style>
+
+    body {
+        text-align: center;
+    }
+
+    :root {
+        --width: 10px;
+        --bolorColor: #f12fc3
+    }
+
+    .box {
+        width: var(--width);
+        height: 50px;
+        margin: 20px auto;
+
+        /*margin: 100px 100px;*/
+        /*align-items: center;*/
+        background-color: var(--bolorColor);
+    }
+
+</style>
+
+<script>
+
+    function update() {
+        var num = this.dataset.sizing || '';
+        console.log(`${this.name}====${this.value}`);
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + num);
+    }
+    var inputs = document.querySelectorAll('input');
+
+    inputs.forEach(input = > input.addEventListener('change', update)
+    )
+    ;
+    inputs.forEach(input = > input.addEventListener('mousemove', update)
+    )
+    ;
+
+</script>
+
+
+</body>
+</html>
